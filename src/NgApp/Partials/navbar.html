@@ -1,0 +1,19 @@
+﻿<div class="container" ng-controller="NavbarCtrl">
+
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+			<button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+				<i class="fa fa-bars"></i>
+			</button>
+			<a class="navbar-brand" ng-click="setRoute('/')">{{title}}</a>
+        </div>
+        <div class="collapse navbar-collapse" collapse="isCollapsed">           
+            <ul class="nav navbar-nav">
+                <li ng-repeat="navItem in navItems" ng-class="{active: isActive('{{navItem.route}}')}"><a ng-click="setRoute(navItem.route)"><i class="{{navItem.icon}}"></i>{{navItem.title}}</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    
+</div>

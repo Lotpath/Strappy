@@ -1,0 +1,11 @@
+﻿<div class="container" ng-controller="HomeCtrl">
+
+    <h1>{{title}}</h1>
+    
+    <div ng-controller="AlertCtrl">
+        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
+            <span ng-bind-html="alert.message"></span>
+        </alert>
+    </div>
+
+</div>

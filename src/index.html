@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+
+    <title>Strappy</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet">
+    <link href="Content/font-awesome.min.css" rel="stylesheet">
+    <link href="NgApp/app.css" rel="stylesheet">
+
+</head>
+
+<body>
+    
+    <div ng-include src="'NgApp/Partials/navbar.html'" ng-controller="NavbarCtrl"></div>
+    <div ng-view></div>
+
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-sanitize.min.js"></script>
+    <script src="Scripts/ui-bootstrap-0.9.0.min.js"></script>
+    <script src="Scripts/ui-bootstrap-tpls-0.9.0.min.js"></script>
+    <script src="NgApp/app.js"></script>
+    <script src="NgApp/Controllers/navbar.js"></script>
+    <script src="NgApp/Controllers/alert.js"></script>
+    <script src="NgApp/Controllers/home.js"></script>
+    <script src="NgApp/Controllers/about.js"></script>
+
+</body>
+</html>
