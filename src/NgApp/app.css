@@ -1,9 +1,15 @@
-﻿@media (min-width: 980px) {
-    body {
-        padding-top: 60px;
-    }
+﻿body {
+    padding-top: 60px;
 }
 
 .navbar a {
     cursor: pointer;  
+}
+
+.navbar .navbar-toggle {
+	padding: 6px 10px;
+}
+
+.navbar .navbar-toggle .fa {
+	color: #ffffff;
 }

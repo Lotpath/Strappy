@@ -6,6 +6,7 @@ Strappy
 Strappy lets you get started quickly with a basic SPA website using Angular and Bootstrap.  There is no server-side code here.  You'll probably create your server-side API and make asynchronous calls to it.
 
 ##Getting Started with Strappy
+Strappy points to CDN-provided files by default, so it's easy to get up and running quickly.  If you want to use local copies of these files, see the instructions pertaining to your environment below.
 
 ###Visual Studio/Nuget
 * Add a new project and select "ASP.NET Empty Web Application".
@@ -21,10 +22,24 @@ PM> Install-Package angularjs
 PM> Install-Package Angular.UI.Bootstrap
 PM> Install-Package FontAwesome
 ```
+* Edit index.html, uncomment the "nuget" sections and remove the "cdn" and "bower" sections.
 * Run the app and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
 
 ###Bower
-Basically, get the packages above and change index.html to point to the files under the bower_components path.  Note that the AngularJS package for Bower does not include all dependencies; you must add them one-by-one.
+* Set up bower
+* Clone this repository
+* Run these commands:
+```
+cd /path/to/site
+cp -R /path/to/Strappy/src/* .
+bower install angular
+bower install angular-route
+bower install angular-sanitize
+bower install angular-bootstrap
+bower install font-awesome
+```
+* Edit index.html, uncomment the "bower" sections and remove the "cdn" and "nuget" sections.
+* Run the app and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
 
 ##The Files
 
