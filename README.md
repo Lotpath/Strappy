@@ -24,8 +24,9 @@ Strappy points to CDN-provided files by default, so it's easy to get up and runn
     PM> Install-Package FontAwesome
     ```
 
+* Or, rather than installing the entire AngularJS project, you can use John Papa's [modular nuget packages](http://www.johnpapa.net/modular-angularjs-nuget-packages/).  You'll need core, route, and sanitize to start with.
 * Edit index.html, uncomment the "nuget" sections and remove the "cdn" and "bower" sections.
-* Run the app and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
+* View index.html in your browser and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
 
 ###Bower
 * Set up bower
@@ -43,7 +44,7 @@ Strappy points to CDN-provided files by default, so it's easy to get up and runn
     ```
 
 * Edit index.html, uncomment the "bower" sections and remove the "cdn" and "nuget" sections.
-* Run the app and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
+* View index.html in your browser and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
 
 ##The Files
 
@@ -53,7 +54,7 @@ Angular UI Bootstrap (0.9.0 or higher) uses the Bootstrap 3.x classes but does n
 Therefore, we prefer a customized build, which is what is included in the Content folder (v3.0.3).  To recreate them for another version:
 
 * Go to [Bootstrap's Customize Page](http://getbootstrap.com/customize/)
-* In the LESS files section, uncheck Glyphicons (under Components), and everything under JavaScript Components.
+* In the LESS files section, uncheck Glyphicons (under Components).
 * In the jQuery plugins section, click Toggle All to uncheck the entire section.
 * Scroll down to the Download sections and select Compile and Download.
 * The zip file contains bootstrap.css and bootstrap.min.css.
