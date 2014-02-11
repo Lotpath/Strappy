@@ -17,11 +17,13 @@ Strappy points to CDN-provided files by default, so it's easy to get up and runn
 * Clone this project and copy its contents into the web application root folder via Windows Explorer.
 * Back in Visual Studio, click the "Show All Files" icon in the Solution Explorer toolbar.  Ctrl-click to select the folders and files you want to include, right-click, and select Include in Project.  Click the "Show All Files" icon again to hide them.
 * In Nuget Package Manager, install AngularJS, AngularJS UI Bootstrap, and FontAwesome.  As of this writing, versions are at 1.2.2, 0.9.0, and 4.0.3.1 respectively. Or, from the Package Manager Console, run:
+
     ```
     PM> Install-Package angularjs
     PM> Install-Package Angular.UI.Bootstrap
     PM> Install-Package FontAwesome
     ```
+
 * Edit index.html, uncomment the "nuget" sections and remove the "cdn" and "bower" sections.
 * Run the app and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
 
@@ -29,6 +31,7 @@ Strappy points to CDN-provided files by default, so it's easy to get up and runn
 * Set up bower
 * Clone this repository
 * Run these commands:
+
     ```
     cd /path/to/site
     cp -R /path/to/Strappy/src/* .
@@ -38,6 +41,7 @@ Strappy points to CDN-provided files by default, so it's easy to get up and runn
     bower install angular-bootstrap
     bower install font-awesome
     ```
+
 * Edit index.html, uncomment the "bower" sections and remove the "cdn" and "nuget" sections.
 * Run the app and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
 
