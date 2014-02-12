@@ -49,16 +49,15 @@ Strappy points to CDN-provided files by default, so it's easy to get up and runn
 ##The Files
 
 ###The Bootstrap css files
-Angular UI Bootstrap (0.9.0 or higher) uses the Bootstrap 3.x classes but does not need the JavaScript components, which means we don't even need jQuery.  FontAwesome replaces Bootstrap's icons.  Bootstrap's nuget package has a dependency on jQuery and will give you a bigger CSS file.
-
-Therefore, we prefer a customized build, which is what is included in the Content folder (v3.0.3).  To recreate them for another version:
+Angular UI Bootstrap (0.9.0 or higher) uses the Bootstrap 3.x classes but does not need the JavaScript components.  Bootstrap's nuget package has a dependency on jQuery and will give you a bigger CSS file.  If you stick to Angular's jqLite, you won't even need jQuery.  Therefore, we prefer a customized build, which is what is included in the Content folder (v3.0.3).  To create the files yourself:
 
 * Go to [Bootstrap's Customize Page](http://getbootstrap.com/customize/)
-* In the LESS files section, uncheck Glyphicons (under Components).
 * In the jQuery plugins section, click Toggle All to uncheck the entire section.
 * Scroll down to the Download sections and select Compile and Download.
 * The zip file contains bootstrap.css and bootstrap.min.css.
-* If any classes have changed since the included version, you may need to change the html
+* If any of Bootstrap's CSS classes have changed since the included version, you may need to change the html.
+
+Note that Angular UI Bootstrap's directives use Bootstrap's Glyphicons and their classes rather than FontAwesome.  This is why we include the fonts folder.
 
 ###The index.html page
 This is based on the [Bootstrap 3.x starter template](http://getbootstrap.com/examples/starter-template/).  Bootstrap has other starter pages [here](http://getbootstrap.com/getting-started/#examples) if you want to roll your own.
