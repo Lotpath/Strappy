@@ -10,11 +10,11 @@
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'NgApp/Views/home.html',
+                templateUrl: 'NgApp/Home/home.html',
                 controller: 'HomeCtrl'
             })
             .when('/about', {
-                templateUrl: 'NgApp/Views/about.html',
+                templateUrl: 'NgApp/About/about.html',
                 controller: 'AboutCtrl'
             })
             .otherwise({
