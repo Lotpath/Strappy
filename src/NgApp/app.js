@@ -1,6 +1,7 @@
 ﻿var app = angular.module('app', [
     'app.navigation',
-    'ngSanitize',
+    'app.home',
+    'app.about',
     'ui.bootstrap'
 ]);
 
