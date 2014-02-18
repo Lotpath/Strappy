@@ -64,7 +64,30 @@ Note that Angular UI Bootstrap's directives use Bootstrap's Glyphicons and their
 This is based on the [Bootstrap 3.x starter template](http://getbootstrap.com/examples/starter-template/).  Bootstrap has other starter pages [here](http://getbootstrap.com/getting-started/#examples) if you want to roll your own.
 
 ###The NgApp folder
-This folder houses the Angular files.  Each subfolder houses its own Angular module.  The app.js file adds each module to the main application as a dependency.
+* The NgApp folder houses the files for your Angular app.  Each subfolder houses its own Angular module that represents a feature of the app.
+* The app.js file defines the main app module and injects each feature module as a dependency.
+* The globals.js file defines the globals module with a single constant called globals.  Inject the globals module into other modules to get access to this globals object.  One value is defined on this object: baseApiUrl.  You may want to set this.
+* The filters.js file defines filters available to the application.
+
+###Authentication
+To set up your project with authentication:
+* Decide whether you're using Basic or Token authentication.  A service for each is provided, with slightly different implementations.
+* These services depend on the [angular-base64](https://github.com/ninjatronic/angular-base64) and [angular-local-storage](https://github.com/grevory/angular-local-storage) libraries.
+** If using Visual Studio, there are no nuget packages available as of this writing.  See the github repos linked above.
+** If using bower:
+
+        ```
+		bower install angular-base64
+		bower install angular-local-storage
+		```
+
+* In your index.html file, reference the Javascript files from the Authentication folder and the dependencies above.
+* Wrap the secured content in a <secured-content></secured-content> tag.  This uses the securedContent directive to hide the app and display the login.html partial when login is required, and vice-versa when login is confirmed.  Typically, you'll wrap this directive around the two divs in index.html representing the navbar and the ng-view.
+* Inject the app.authentication module in your app.js file.
+* Inject the desired service from the app.authentication module into your feature module.
+* At the bottom of your controller, call validate() on the authentication service.  This will ensure that if the page is refreshed, the user still has access.
+* In authentication.js, specify the authValidateUrl and authLoginUrl settings.
+* Provide company and project logos to be displayed on login.html.
 
 ##Browser Support
 Older browsers may be partially unsupported, at least without some tweaking.

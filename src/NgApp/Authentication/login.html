@@ -1,0 +1,59 @@
+﻿<style type="text/css">
+    #Login {
+        width: 390px;
+        padding-top: 5px;
+    }
+
+    #Login .content {
+        background-color: #f0f0f0;
+        padding: 15px 40px;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 10px 10px 10px 10px;
+        -moz-border-radius: 10px 10px 10px 10px;
+        border-radius: 10px 10px 10px 10px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+        box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    }
+
+    #Login fieldset legend {
+        margin-bottom: 15px;
+        font-size: 12px;
+        line-height: 0;
+        padding-top: 10px;
+    }
+
+    #Login form {
+        margin-bottom: 0;
+    }
+
+    #ProjectLogo {
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container" id="Login">
+    <img id="CompanyLogo" src="Content/images/company_logo.png"/>
+    <div class="content text-center">
+        <img id="ProjectLogo" src="Content/images/project_logo.png" />
+        <form novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Username" ng-model="user.username" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+                    </div>
+                </div>
+                <span ng-show="showMessage" class="{{messageClass}}">{{message}}<br /><br /></span>
+                <button class="btn btn-success" type="submit" ng-click="login(user)"><i ng-class="{'fa fa-sign-in':!authenticating,'fa fa-cog fa-spin':authenticating}"></i> Log In</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
