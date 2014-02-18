@@ -19,7 +19,7 @@ Strappy points to CDN-provided files by default, so it's easy to get up and runn
 * In Nuget Package Manager, install AngularJS, AngularJS UI Bootstrap, and FontAwesome.  Or, from the Package Manager Console, run:
 
     ```
-	PM> Install-Package bootstrap
+    PM> Install-Package bootstrap
     PM> Install-Package angularjs
     PM> Install-Package Angular.UI.Bootstrap
     PM> Install-Package FontAwesome
@@ -73,13 +73,14 @@ This is based on the [Bootstrap 3.x starter template](http://getbootstrap.com/ex
 To set up your project with authentication:
 * Decide whether you're using Basic or Token authentication.  A service for each is provided, with slightly different implementations.
 * These services depend on the [angular-base64](https://github.com/ninjatronic/angular-base64) and [angular-local-storage](https://github.com/grevory/angular-local-storage) libraries.
+
 ** If using Visual Studio, there are no nuget packages available as of this writing.  See the github repos linked above.
 ** If using bower:
 
         ```
-		bower install angular-base64
-		bower install angular-local-storage
-		```
+        bower install angular-base64
+        bower install angular-local-storage
+        ```
 
 * In your index.html file, reference the Javascript files from the Authentication folder and the dependencies above.
 * Wrap the secured content in a <secured-content></secured-content> tag.  This uses the securedContent directive to hide the app and display the login.html partial when login is required, and vice-versa when login is confirmed.  Typically, you'll wrap this directive around the two divs in index.html representing the navbar and the ng-view.
