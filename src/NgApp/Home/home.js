@@ -1,9 +1,9 @@
-﻿angular.module('app.home', ['ngSanitize']);
+﻿angular.module('app.home', ['ngSanitize', 'app.authentication']);
 
 angular.module('app.home')
-    .controller('HomeCtrl', ['$scope', HomeCtrl]);
+    .controller('HomeCtrl', ['$scope', 'authService', HomeCtrl]);
 
-function HomeCtrl($scope) {
+function HomeCtrl($scope, authService) {
     $scope.title = 'Welcome to Strappy!';
     
     $scope.alerts = [
@@ -15,4 +15,6 @@ function HomeCtrl($scope) {
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
+
+    authService.validate();
 }

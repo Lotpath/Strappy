@@ -10,17 +10,8 @@
     <meta name="author" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- cdn -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-    <!-- nuget -->
-    <!-- <link href="Content/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link href="Content/font-awesome.min.css" rel="stylesheet"> -->
-
-    <!-- bower -->
-    <!-- <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="NgApp/app.css" rel="stylesheet">
 
@@ -28,36 +19,30 @@
 
 <body>
     
-    <div ng-include src="'NgApp/Navigation/navbar.html'" ng-controller="NavigationCtrl"></div>
-    <div ng-view></div>
+    <secured-content>
+        <div ng-show="loginRequired" ng-include src="'NgApp/Authentication/login.html'" ng-controller="LoginCtrl"></div>
+        <div ng-hide="loginRequired" ng-include src="'NgApp/app.html'"></div>
+    </secured-content>
 
-    <!-- cdn -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-sanitize.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
-
-    <!-- nuget -->
-    <!-- <script src="Scripts/angular.min.js"></script> -->
-    <!-- <script src="Scripts/angular-route.min.js"></script> -->
-    <!-- <script src="Scripts/angular-sanitize.min.js"></script> -->
-    <!-- <script src="Scripts/ui-bootstrap-0.10.0.min.js"></script> -->
-    <!-- <script src="Scripts/ui-bootstrap-tpls-0.10.0.min.js"></script> -->
-
-    <!-- bower -->
-    <!-- <script src="bower_components/angular/angular.min.js"></script> -->
-    <!-- <script src="bower_components/angular-route/angular-route.min.js"></script> -->
-    <!-- <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script> -->
-    <!-- <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script> -->
-    <!-- <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script> -->
+    <script src="bower_components/angular/angular.min.js"></script> 
+    <script src="bower_components/angular-route/angular-route.min.js"></script> 
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script> 
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script> 
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script> 
+    <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script> 
+    <script src="bower_components/angular-base64/angular-base64.min.js"></script> 
 
     <script src="NgApp/globals.js"></script>
-    <script src="NgApp/app.js"></script>
+    <script src="NgApp/Authentication/http-auth-interceptor.js"></script>
+    <script src="NgApp/Authentication/authentication.js"></script>
+    <script src="NgApp/Authentication/loginCtrl.js"></script>
+    <script src="NgApp/Authentication/fakeAuthenticationSvc.js"></script>
+    <script src="NgApp/Authentication/securedContent.js"></script>
     <script src="NgApp/Navigation/navigation.js"></script>
     <script src="NgApp/Navigation/routes.js"></script>
     <script src="NgApp/Home/home.js"></script>
     <script src="NgApp/About/about.js"></script>
+    <script src="NgApp/app.js"></script>
 
 </body>
 </html>

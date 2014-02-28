@@ -1,26 +1,22 @@
 ﻿angular.module('app.authentication')
-    .directive('securedContent', ['authService', SecuredContentDirective]);
+    .directive('securedContent', [SecuredContentDirective]);
 
-function SecuredContentDirective(auth) {
+function SecuredContentDirective() {
     return {
         restrict: 'E',
         link: function postLink(scope, element, attrs) {
-            scope.loginRequired = false;
-            scope.loginConfirmed = false;
-            
+            scope.loginRequired = null;
+
             scope.$on('event:auth-loginRequired', function () {
-                scope.loginConfirmed = false;
                 scope.loginRequired = true;
             });
 
             scope.$on('event:auth-loginCancelled', function () {
-                scope.loginConfirmed = false;
                 scope.loginRequired = true;
             });
 
             scope.$on('event:auth-loginConfirmed', function () {
                 scope.loginRequired = false;
-                scope.loginConfirmed = true;
             });
         }
     };

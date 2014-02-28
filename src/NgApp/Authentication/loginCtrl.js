@@ -15,28 +15,24 @@ function LoginCtrl($scope, $http, auth) {
         auth.login(user.username, user.password);
     };
 
-    $scope.$on('event:auth-loginInvalid', function (data, response) {
-        $scope.authenticating = false;
-        notAuthenticated(response.message);
-    });
-
     $scope.$on('event:auth-loginConfirmed', function () {
         $scope.authenticating = false;
     });
 
-    $scope.$on('event:auth-loginRequired', function () {
+    $scope.$on('event:auth-loginRequired', function (data, response) {
         $scope.user = {};
-        $scope.message = "";
-        $scope.showMessage = false;
+        $scope.authenticating = false;
+        if (!response) {
+            $scope.message = "";
+            $scope.showMessage = false;
+        } else {
+            var message = (typeof response.message === "undefined") ? "" : response.message;
+            if (message != "") {
+                var messageClass = (typeof response.messageClass === "undefined") ? "text-danger" : response.messageClass;
+                $scope.message = message;
+                $scope.messageClass = messageClass;
+                $scope.showMessage = true;
+            }
+        }
     });
-
-    function notAuthenticated(message, messageClass) {
-        message = (typeof message === "undefined") ? "" : message;
-        if (message === "") return;
-
-        messageClass = (typeof messageClass === "undefined") ? "text-danger" : messageClass;
-        $scope.message = message;
-        $scope.messageClass = messageClass;
-        $scope.showMessage = true;
-    }
 }

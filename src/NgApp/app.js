@@ -3,10 +3,11 @@
     'app.navigation',
     'app.home',
     'app.about',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngRoute'
 ]);
 
-app.run(['$q', '$rootScope',
-    function ($q, $rootScope) {
+app.run(['$route', '$q', '$rootScope',
+    function ($route, $q, $rootScope) {
     }
 ]);

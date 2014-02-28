@@ -43,15 +43,6 @@
                 loginRequired: function (data) {
                     $rootScope.$broadcast('event:auth-loginRequired', data);
                 },
-
-                /**
-                * Call this function to publish the loginInvalid event
-                * This is like loginCancelled but doesn't reject the buffered requests
-                * @param data an optional argument to pass on to $broadcast.
-                */
-                loginInvalid: function (data) {
-                    $rootScope.$broadcast('event:auth-loginInvalid', data);
-                }
         };
         }])
 

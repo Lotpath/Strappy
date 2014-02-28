@@ -1,19 +1,31 @@
 ﻿<div class="container">
 
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-			<button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
-				<i class="fa fa-bars"></i>
-			</button>
-			<a class="navbar-brand" ng-click="setRoute('/')">{{title}}</a>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" ng-click="setRoute('/')">{{title}}</a>
+            </div>
+            <div class="collapse navbar-collapse" collapse="isCollapsed">           
+                <ul class="nav navbar-nav">
+                    <li ng-repeat="navItem in navItems" ng-class="{active: isActive('{{navItem.route}}')}"><a ng-click="setRoute(navItem.route)"><i class="{{navItem.icon}}"></i>{{navItem.title}}</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{username}} <i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="manageUserAccount()"><i class="fa fa-user fa-fw"></i> Manage Account</a></li>
+                            <li><a href="#" ng-click="changeUserPassword()"><i class="fa fa-unlink fa-fw"></i> Change Password</a></li>
+                            <li><a href="#" ng-click="simulateTimeout()"><i class="fa fa-clock-o fa-fw"></i> Simulate Timeout</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" collapse="isCollapsed">           
-            <ul class="nav navbar-nav">
-                <li ng-repeat="navItem in navItems" ng-class="{active: isActive('{{navItem.route}}')}"><a ng-click="setRoute(navItem.route)"><i class="{{navItem.icon}}"></i>{{navItem.title}}</a></li>
-            </ul>
-        </div>
-      </div>
     </div>
-    
+
 </div>

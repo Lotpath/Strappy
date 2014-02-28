@@ -2,10 +2,10 @@ angular.module('app.authentication')
     .factory('authService', ['$rootScope', '$q', '$http', 'globals', 'authSettings', 'authInterceptor', 'localStorageService', '$base64', AuthService]);
 
 function AuthService($rootScope, $q, $http, globals, settings, interceptor, localStorage, base64) {
-
+    
     return {
         validate: function () {
-            var credentials = localStorage.get('userCredentials');
+            var credentials = localStorage.get(settings.localStorageTokenKey);
             if (credentials === null) {
                 interceptor.loginRequired();
             } else {
@@ -20,18 +20,18 @@ function AuthService($rootScope, $q, $http, globals, settings, interceptor, loca
                             $http.defaults.headers.common['Authorization'] = 'Basic ' + credentials;
                             interceptor.loginConfirmed();
                         } else {
-                            interceptor.loginInvalid({
+                            interceptor.loginRequired({
                                 response: data,
                                 status: status,
-                                message: "Your session has timed out.  Please log in again."
+                                message: settings.messages.sessionTimedOut
                             });
                         }
                     })
                     .error(function (data, status) {
-                        interceptor.loginInvalid({
+                        interceptor.loginRequired({
                             response: data,
                             status: status,
-                            message: "Your session has timed out.  Please log in again."
+                            message: settings.messages.sessionTimedOut
                         });
                     });
             }
@@ -47,38 +47,54 @@ function AuthService($rootScope, $q, $http, globals, settings, interceptor, loca
             })
                 .success(function (data, status, headers, config) {
                     if (status === 200) {
-                        localStorage.remove('userCredentials');
-                        localStorage.add('userCredentials', credentials);
+                        localStorage.remove(settings.localStorageTokenKey);
+                        localStorage.add(settings.localStorageTokenKey, credentials);
+
+                        localStorage.remove(settings.localStorageUserNameKey);
+                        localStorage.add(settings.localStorageUserNameKey, username);
+
                         $http.defaults.headers.common['Authorization'] = 'Basic ' + credentials;
                         interceptor.loginConfirmed();
                     } else {
-                        interceptor.loginInvalid({
+                        interceptor.loginRequired({
                             response: data,
                             status: status,
-                            message: "There was an unknown error.\r\nPlease try again or contact your system administrator. " + status
+                            message: settings.messages.unknownError + ' ' + status
                         });
                     }
                 })
                 .error(function (data, status) {
                     if (status === 401) {
-                        interceptor.loginInvalid({
+                        interceptor.loginRequired({
                             response: data,
                             status: status,
-                            message: "Invalid username or password."
+                            message: settings.messages.unauthorized
                         });
                     } else {
-                        interceptor.loginInvalid({
+                        interceptor.loginRequired({
                             response: data,
                             status: status,
-                            message: "There was an unknown error.\r\nPlease try again or contact your system administrator. " + status
+                            message: settings.messages.unknownError + ' ' + status
                         });
                     }
                 });
         },
 
         logout: function () {
-            localStorage.remove('userCredentials');
+            localStorage.remove(settings.localStorageTokenKey);
+            localStorage.remove(settings.localStorageUserNameKey);
             interceptor.loginRequired();
         },
+        
+        getUsername: function () {
+            return localStorage.get(settings.localStorageUserNameKey);
+        },
+
+        simulateTimeout: function () {
+            var credentials = localStorage.get(settings.localStorageTokenKey);
+            credentials = credentials.replace('Z', 'X');
+            localStorage.remove(settings.localStorageTokenKey);
+            localStorage.add(settings.localStorageTokenKey, credentials);
+        }
     };
 };
