@@ -6,47 +6,56 @@ Strappy
 Strappy lets you get started quickly with a basic SPA website using Angular and Bootstrap.  There is no server-side code here.  You'll probably create your server-side API and make asynchronous calls to it.
 
 ##Getting Started with Strappy
-Strappy points to CDN-provided files by default, so it's easy to get up and running quickly.  If you want to use local copies of these files, see the instructions pertaining to your environment below.
 
 ###Visual Studio/Nuget
-* Add a new project and select "ASP.NET Empty Web Application".
+We have decided to use <a href="http://bower.io" target="_blank">bower</a> for package management.  Nuget is great for server-side packages, but bower is quickly becoming the package manager of choice for client-side libraries.  Some third-party Angular modules do not have a Nuget package, which drove our decision to standardize on bower.
+
+* Create a new project (or add to an existing solution) and select "ASP.NET Empty Web Application".
 * Go to the new project's Properties page and click the Web tab.
 * Under Servers, select User Local IIS Web Server but uncheck Use IIS Express.  Click the Create Virtual Directory button.
 * Under Start Action, select Start URL and copy-paste the URL from Project Url below.  Save and close the property page.
 * Under References, delete them all.  Remember, there is no server-side code here.
-* Clone this project and copy its contents into the web application root folder via Windows Explorer.
-* Back in Visual Studio, click the "Show All Files" icon in the Solution Explorer toolbar.  Ctrl-click to select the folders and files you want to include, right-click, and select Include in Project.  Click the "Show All Files" icon again to hide them.
-* In Nuget Package Manager, install AngularJS, AngularJS UI Bootstrap, and FontAwesome.  Or, from the Package Manager Console, run:
+* Clone the Strappy repository and copy its contents into the root folder of your web project.
+* Back in Visual Studio, click the "Show All Files" icon in the Solution Explorer toolbar.  Ctrl-click to select index.html and NgApp, right-click, and select Include in Project.  Click the "Show All Files" icon again to hide any other hidden files or folders.* From Package Manager Console, execute these two commands to install Bower and add its location to your path:
 
     ```
-    PM> Install-Package bootstrap
-    PM> Install-Package angularjs
-    PM> Install-Package Angular.UI.Bootstrap
-    PM> Install-Package FontAwesome
+    Install-Package Bower
+    $loc = Get-Location; $env:Path += ";" + $loc + "\packages\Bower.1.2.8"
     ```
 
-* Note: rather than installing the entire AngularJS project, you could use John Papa's [modular nuget packages](http://www.johnpapa.net/modular-angularjs-nuget-packages/).  You'll need core, route, and sanitize to start with.
-* Edit index.html, uncomment the "nuget" sections and remove the "cdn" and "bower" sections.  You may also need to change one or more paths due to new version numbers.
-* View index.html in your browser and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
-
-###Bower
+###Other environments
 * Set up bower
-* Clone this repository
-* Run these commands:
+* Clone the Strappy repository
+* Copy its contents into the root folder of your web project:
 
     ```
     cd /path/to/site
     cp -R /path/to/Strappy/src/* .
+    ```
+
+###Then...
+* Execute these bower commands to install Strappy's dependencies:
+
+    ```
     bower install bootstrap
     bower install angular
     bower install angular-route
     bower install angular-sanitize
     bower install angular-bootstrap
+    bower install angular-base64
+    bower install angular-local-storage
     bower install font-awesome
     ```
 
-* Edit index.html, uncomment the "bower" sections and remove the "cdn" and "nuget" sections.  You may also need to change one or more paths due to new version numbers.
-* View index.html in your browser and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
+* Browse to the root of your web project and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
+* By default, Strappy uses the Fake Authentication Service (`Authentication/fakeAuthenticationSvc.js`) which allows you to log in with demo/demo as the username and password.
+
+###Next Steps
+* Provide company and project logos to be displayed on `login.html`.
+* Find all instances of the string "Strappy" and replace with your project name.
+* In `index.html`, reference either the Basic (`Authentication/basicAuthenticationSvc.js`) or Token (`Authentication/tokenAuthenticationSvc.js`) Authentication Service.
+* In `Authentication/authentication.js`, specify the `authValidateUrl` and `authLoginUrl` settings.
+* Use the Home and About modules as a template to create your own.
 
 ##The Files
 
@@ -67,27 +76,6 @@ This is based on the [Bootstrap 3.x starter template](http://getbootstrap.com/ex
 * The `NgApp` folder houses the files for your Angular app.  Each subfolder houses its own Angular module that represents a feature of the app.
 * The `app.js` file defines the main app module and injects each feature module as a dependency.
 * The `globals.js` file defines the globals module with a single constant called globals.  Inject the globals module into other modules to get access to this globals object.  One value is defined on this object: baseApiUrl.  You may want to set this.
-
-###Authentication
-To set up your project with authentication:
-* Decide whether you're using Basic or Token authentication.  The Authentication module contains a service for each, with slightly different implementations.
-* These services depend on the [angular-base64](https://github.com/ninjatronic/angular-base64) and [angular-local-storage](https://github.com/grevory/angular-local-storage) libraries.
-
-    * If using Visual Studio, there are no nuget packages available as of this writing.  See the github repos linked above.
-    * If using bower:
-    
-        ```
-        bower install angular-base64
-        bower install angular-local-storage
-        ```
-        
-* In your `index.html` file, reference the Javascript files from the Authentication folder and the dependencies above.
-* Wrap the secured content in a `<secured-content></secured-content>` tag.  This uses the securedContent directive to hide the app and display the `login.html` partial when login is required, and vice-versa when login is confirmed.  Typically, you'll wrap this directive around the two divs in index.html representing the navbar and the ng-view.
-* Inject the `app.authentication` module in your `app.js` file.
-* Inject the desired service (basic or token) from the `app.authentication` module into your feature module.
-* At the bottom of your controller, call `validate()` on the authentication service.  This will ensure that if the page is refreshed, the user still has access.
-* In `authentication.js`, specify the `authValidateUrl` and `authLoginUrl` settings.
-* Provide company and project logos to be displayed on `login.html`.
 
 ##Browser Support
 Older browsers may be partially unsupported, at least without some tweaking.
