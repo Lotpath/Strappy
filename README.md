@@ -25,6 +25,7 @@ We have decided to use <a href="http://bower.io" target="_blank">bower</a> for p
     ```
     Install-Package Bower
     $loc = Get-Location; $env:Path += ";" + $loc + "\packages\Bower.1.2.8"
+    cd Name.Of.WebProject
     ```
 
 ####Other environments
