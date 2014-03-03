@@ -7,7 +7,10 @@ Strappy lets you get started quickly with a basic SPA website using Angular and 
 
 ##Getting Started with Strappy
 
-###Visual Studio/Nuget
+###Project setup
+The steps depend on whether you are using Visual Studio or some other environment.
+
+####Visual Studio/Nuget
 We have decided to use <a href="http://bower.io" target="_blank">bower</a> for package management.  Nuget is great for server-side packages, but bower is quickly becoming the package manager of choice for client-side libraries.  Some third-party Angular modules do not have a Nuget package, which drove our decision to standardize on bower.
 
 * Create a new project (or add to an existing solution) and select "ASP.NET Empty Web Application".
@@ -16,14 +19,15 @@ We have decided to use <a href="http://bower.io" target="_blank">bower</a> for p
 * Under Start Action, select Start URL and copy-paste the URL from Project Url below.  Save and close the property page.
 * Under References, delete them all.  Remember, there is no server-side code here.
 * Clone the Strappy repository and copy its contents into the root folder of your web project.
-* Back in Visual Studio, click the "Show All Files" icon in the Solution Explorer toolbar.  Ctrl-click to select index.html and NgApp, right-click, and select Include in Project.  Click the "Show All Files" icon again to hide any other hidden files or folders.* From Package Manager Console, execute these two commands to install Bower and add its location to your path:
+* Back in Visual Studio, click the "Show All Files" icon in the Solution Explorer toolbar.  Ctrl-click to select index.html and NgApp, right-click, and select Include in Project.  Click the "Show All Files" icon again to hide any other hidden files or folders.
+* From Package Manager Console, execute these two commands to install Bower and add its location to your path:
 
     ```
     Install-Package Bower
     $loc = Get-Location; $env:Path += ";" + $loc + "\packages\Bower.1.2.8"
     ```
 
-###Other environments
+####Other environments
 * Set up bower
 * Clone the Strappy repository
 * Copy its contents into the root folder of your web project:
