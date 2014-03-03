@@ -1,7 +1,7 @@
 angular.module('app.authentication')
-    .factory('authService', ['$rootScope', '$q', '$http', 'globals', 'authSettings', 'authInterceptor', 'localStorageService', '$base64', AuthService]);
+    .factory('authService', ['$rootScope', '$q', '$http', 'globals', 'authSettings', 'authInterceptor', 'localStorageService', AuthService]);
 
-function AuthService($rootScope, $q, $http, globals, settings, interceptor, localStorage, base64) {
+function AuthService($rootScope, $q, $http, globals, settings, interceptor, localStorage) {
 
     return {
         validate: function () {
@@ -38,11 +38,12 @@ function AuthService($rootScope, $q, $http, globals, settings, interceptor, loca
         },
 
         login: function (username, password) {
-            var credentials = base64.encode(username + ':' + password);
+            var formData = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
             $http({
-                method: 'GET',
+                method: 'POST',
                 url: globals.baseApiUrl + settings.authLoginUrl,
-                headers: { 'Authorization': 'Basic ' + credentials },
+                data: formData,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 ignoreAuthModule: true
             })
                 .success(function (data, status, headers, config) {
