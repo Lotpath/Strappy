@@ -18,7 +18,7 @@ We have decided to use <a href="http://bower.io" target="_blank">bower</a> for p
 * Under Servers, select User Local IIS Web Server but uncheck Use IIS Express.  Click the Create Virtual Directory button.
 * Under Start Action, select Start URL and copy-paste the URL from Project Url below.  Save and close the property page.
 * Under References, delete them all.  Remember, there is no server-side code here.
-* Clone the Strappy repository and copy its contents into the root folder of your web project.
+* Clone the Strappy repository and copy the contents of the `src` directory into the root of your web project.
 * Back in Visual Studio, click the "Show All Files" icon in the Solution Explorer toolbar.  Ctrl-click to select index.html and NgApp, right-click, and select Include in Project.  Click the "Show All Files" icon again to hide any other hidden files or folders.
 * From Package Manager Console, execute these two commands to install Bower and add its location to your path:
 
@@ -31,7 +31,7 @@ We have decided to use <a href="http://bower.io" target="_blank">bower</a> for p
 ####Other environments
 * Set up bower
 * Clone the Strappy repository
-* Copy its contents into the root folder of your web project:
+* Copy the contents of the `src` directory into the root of your web project:
 
     ```
     cd /path/to/site
