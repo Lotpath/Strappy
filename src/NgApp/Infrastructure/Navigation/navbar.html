@@ -6,15 +6,23 @@
                 <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" ng-click="setRoute('/')">{{title}}</a>
+                <a class="navbar-brand" ng-click="setRoute('/')">{{appTitle}}</a>
             </div>
             <div class="collapse navbar-collapse" collapse="isCollapsed">           
                 <ul class="nav navbar-nav">
-                    <li ng-repeat="navItem in navItems" ng-class="{active: isActive('{{navItem.route}}')}"><a ng-click="setRoute(navItem.route)"><i class="{{navItem.icon}}"></i>{{navItem.title}}</a></li>
+                    <li ng-repeat="navItem in navItems" ng-class="{active: isActive('{{navItem.route}}')}" dropdown>
+                        <a ng-click="setRoute(navItem.route)" ng-if="navItem.route"><i class="{{navItem.icon}}"></i>{{navItem.title}}</a>
+                        <a ng-if="navItem.items" class="dropdown-toggle" href="#" dropdown-toggle><i class="{{navItem.icon}}"></i>{{navItem.title}}&nbsp;<i class="fa fa-caret-down"></i></a>
+                        <ul ng-if="navItem.items" class="dropdown-menu">
+                            <li ng-repeat="item in navItem.items" ng-class="{active: isActive('{{item.route}}')}">
+                                <a ng-click="setRoute(item.route)"><i class="{{item.icon}}"></i>{{item.title}}</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{username}} <i class="fa fa-caret-down"></i></a>
+                    <li class="dropdown" dropdown>
+                        <a class="dropdown-toggle" dropdown-toggle href="#">{{username}} <i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" ng-click="manageUserAccount()"><i class="fa fa-user fa-fw"></i> Manage Account</a></li>
                             <li><a href="#" ng-click="changeUserPassword()"><i class="fa fa-unlink fa-fw"></i> Change Password</a></li>

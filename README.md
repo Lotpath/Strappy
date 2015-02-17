@@ -1,7 +1,7 @@
 Strappy
 =======
 
-*The* AngularJS/Bootstrap/FontAwesome bootstrapper, brought to you by the folks at <a href="http://www.lotpath.com" target="_blank">Lotpath</a>.
+*The* AngularJS/Bootstrap/FontAwesome bootstrapper, brought to you by the folks at <a href="http://lotpath.com" target="_blank">Lotpath</a>.
 
 Strappy lets you get started quickly with a basic SPA website using Angular and Bootstrap.  There is no server-side code here.  You'll probably create your server-side API and make asynchronous calls to it.
 
@@ -19,12 +19,12 @@ We have decided to use <a href="http://bower.io" target="_blank">bower</a> for p
 * Under Start Action, select Start URL and copy-paste the URL from Project Url below.  Save and close the property page.
 * Under References, delete them all.  Remember, there is no server-side code here.
 * Clone the Strappy repository and copy the contents of the `src` directory into the root of your web project.
-* Back in Visual Studio, click the "Show All Files" icon in the Solution Explorer toolbar.  Ctrl-click to select index.html and NgApp, right-click, and select Include in Project.  Click the "Show All Files" icon again to hide any other hidden files or folders.
+* Back in Visual Studio, click the "Show All Files" icon in the Solution Explorer toolbar.  Ctrl-click to select index.html, NgApp, and bower.json, right-click, and select Include in Project.  Click the "Show All Files" icon again to hide any other hidden files or folders.
 * From Package Manager Console, execute these two commands to install Bower and add its location to your path:
 
     ```
     Install-Package Bower
-    $loc = Get-Location; $env:Path += ";" + $loc + "\packages\Bower.1.2.8"
+    $loc = Get-Location; $env:Path += ";" + $loc + "\packages\Bower.1.3.11"
     cd Name.Of.WebProject
     ```
 
@@ -39,27 +39,20 @@ We have decided to use <a href="http://bower.io" target="_blank">bower</a> for p
     ```
 
 ###Then...
-* Execute these bower commands to install Strappy's dependencies:
+* With the bower.json file at the root of your project, execute this bower command to install Strappy's dependencies:
 
     ```
-    bower install bootstrap
-    bower install angular
-    bower install angular-route
-    bower install angular-sanitize
-    bower install angular-bootstrap
-    bower install angular-base64
-    bower install angular-local-storage
-    bower install font-awesome
+    bower install
     ```
 
 * Browse to the root of your web project and see the scaffolding for your Angular-based SPA with Bootstrap CSS!
-* By default, Strappy uses the Fake Authentication Service (`Authentication/fakeAuthenticationSvc.js`) which allows you to log in with demo/demo as the username and password.
+* By default, Strappy uses the Fake Authentication Service (`Infrastructure/Authentication/fake-authentication-service.js`) which allows you to log in with demo/demo as the username and password.
 
 ###Next Steps
 * Provide company and project logos to be displayed on `login.html`.
 * Find all instances of the string "Strappy" and replace with your project name.
-* In `index.html`, reference either the Basic (`Authentication/basicAuthenticationSvc.js`) or Token (`Authentication/tokenAuthenticationSvc.js`) Authentication Service.
-* In `Authentication/authentication.js`, specify the `authValidateUrl` and `authLoginUrl` settings.
+* In `index.html`, reference either the Basic (`Infrastructure/Authentication/basic-authentication-service.js`) or Token (`Infrastructure/Authentication/token-authentication-service.js`) Authentication Service.
+* In `Infrastructure/Authentication/authentication.js`, specify the `authValidateUrl` and `authLoginUrl` settings.
 * Use the Home and About modules as a template to create your own.
 
 ##The Files
@@ -78,9 +71,8 @@ Note that Angular UI Bootstrap's directives use Bootstrap's Glyphicons and their
 This is based on the [Bootstrap 3.x starter template](http://getbootstrap.com/examples/starter-template/).  Bootstrap has other starter pages [here](http://getbootstrap.com/getting-started/#examples) if you want to roll your own.
 
 ###The NgApp folder
-* The `NgApp` folder houses the files for your Angular app.  Each subfolder houses its own Angular module that represents a feature of the app.
+* The `NgApp` folder houses the structure of your Angular app.  Everything is split between Feature or Infrastructure. Each subfolder under Features houses its own Angular module that represents a feature of the app.
 * The `app.js` file defines the main app module and injects each feature module as a dependency.
-* The `globals.js` file defines the globals module with a single constant called globals.  Inject the globals module into other modules to get access to this globals object.  One value is defined on this object: baseApiUrl.  You may want to set this.
 
 ##Browser Support
 Older browsers may be partially unsupported, at least without some tweaking.

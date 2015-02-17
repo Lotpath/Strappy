@@ -2,7 +2,7 @@
 <html lang="en" ng-app="app">
 <head>
 
-    <title>Strappy</title>
+    <title ng-bind="appTitle">Strappy</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,9 +18,12 @@
 </head>
 
 <body>
-    
+    <div ng-controller="DemoCtrl">
+        <div class="demo-alert alert alert-danger" ng-cloak ng-if="isDemo">** DEMO **</div>
+    </div>
+
     <secured-content>
-        <div ng-show="loginRequired" ng-include src="'NgApp/Authentication/login.html'" ng-controller="LoginCtrl"></div>
+        <div ng-show="loginRequired" ng-include src="'NgApp/Features/Login/login.html'" ng-controller="LoginCtrl"></div>
         <div ng-hide="loginRequired" ng-include src="'NgApp/app.html'"></div>
     </secured-content>
 
@@ -29,19 +32,30 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script> 
     <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script> 
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script> 
-    <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script> 
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script> 
     <script src="bower_components/angular-base64/angular-base64.min.js"></script> 
 
-    <script src="NgApp/globals.js"></script>
-    <script src="NgApp/Authentication/http-auth-interceptor.js"></script>
-    <script src="NgApp/Authentication/authentication.js"></script>
-    <script src="NgApp/Authentication/loginCtrl.js"></script>
-    <script src="NgApp/Authentication/fakeAuthenticationSvc.js"></script>
-    <script src="NgApp/Authentication/securedContent.js"></script>
-    <script src="NgApp/Navigation/navigation.js"></script>
-    <script src="NgApp/Navigation/routes.js"></script>
-    <script src="NgApp/Home/home.js"></script>
-    <script src="NgApp/About/about.js"></script>
+    <!--Infrastructure/Auth-->
+    <script src="NgApp/Infrastructure/Authentication/auth-module.js"></script>
+    <script src="NgApp/Infrastructure/Authentication/http-auth-interceptor.js"></script>
+    <script src="NgApp/Infrastructure/Authentication/authentication.js"></script>
+    <script src="NgApp/Infrastructure/Authentication/fake-authentication-service.js"></script>
+    <script src="NgApp/Infrastructure/Authentication/secured-content.js"></script>
+    <!--Infrastructure/Navigation-->
+    <script src="NgApp/Infrastructure/Navigation/navigation-module.js"></script>
+    <script src="NgApp/Infrastructure/Navigation/navigation-controller.js"></script>
+    <!--Infrastructure/Demo-->
+    <script src="NgApp/Infrastructure/Demo/demo-module.js"></script>
+    <script src="NgApp/Infrastructure/Demo/demo-controller.js"></script>
+    <!--Features/Login-->
+    <script src="NgApp/Features/Login/login-controller.js"></script>
+    <!--Features/Home-->
+    <script src="NgApp/Features/Home/home-module.js"></script>
+    <script src="NgApp/Features/Home/home-controller.js"></script>
+    <!--Features/About-->
+    <script src="NgApp/Features/About/about-module.js"></script>
+    <script src="NgApp/Features/About/about-controller.js"></script>
+    <!--App-->
     <script src="NgApp/app.js"></script>
 
 </body>
