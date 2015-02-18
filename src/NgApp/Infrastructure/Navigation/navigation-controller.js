@@ -23,8 +23,9 @@
             return ($location.path() == route);
         };
 
-        $scope.logout = function() {
+        $scope.logout = function () {
             auth.logout();
+            $location.path('/');
         };
 
         $scope.manageUserAccount = function() {
