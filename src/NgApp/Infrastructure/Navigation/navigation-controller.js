@@ -10,7 +10,7 @@
         ];
 
         $scope.isCollapsed = true;
-        $scope.$on('event:auth-loginConfirmed', function() {
+        $scope.$on('event:auth-loginConfirmed', function () {
             $scope.username = auth.getUsername();
         });
 
@@ -25,7 +25,6 @@
 
         $scope.logout = function () {
             auth.logout();
-            $location.path('/');
         };
 
         $scope.manageUserAccount = function() {
