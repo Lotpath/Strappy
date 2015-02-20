@@ -11,15 +11,18 @@
                 var credentials = localStorage.get(settings.localStorageTokenKey);
                 if (credentials === null) {
                     interceptor.loginRequired();
+                    isAuthenticated = false;
                 } else {
                     if (base64.decode(credentials) == validUsername + ":" + validPassword) {
                         interceptor.loginConfirmed();
+                        isAuthenticated = true;
                     } else {
                         interceptor.loginRequired({
                             response: null,
                             status: status,
                             message: settings.messages.sessionTimedOut
                         });
+                        isAuthenticated = false;
                     }
                 }
             },
@@ -35,12 +38,14 @@
                     localStorage.add(settings.localStorageUserNameKey, username);
 
                     interceptor.loginConfirmed();
+                    isAuthenticated = true;
                 } else {
                     interceptor.loginRequired({
                         response: null,
                         status: status,
                         message: settings.messages.unauthorized
                     });
+                    isAuthenticated = false;
                 }
             },
 
@@ -48,6 +53,7 @@
                 localStorage.remove(settings.localStorageTokenKey);
                 localStorage.remove(settings.localStorageUserNameKey);
                 interceptor.loginRequired();
+                isAuthenticated = false;
             },
 
             getUsername: function() {
@@ -59,6 +65,7 @@
                 credentials = credentials.replace('Z', 'X');
                 localStorage.remove(settings.localStorageTokenKey);
                 localStorage.add(settings.localStorageTokenKey, credentials);
+                isAuthenticated = false;
             },
             isAuthenticated: function () {
                 return isAuthenticated;

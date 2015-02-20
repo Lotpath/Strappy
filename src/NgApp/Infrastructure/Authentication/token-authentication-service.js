@@ -20,12 +20,14 @@
                             if (status === 200) {
                                 $http.defaults.headers.common['Authorization'] = settings.token.authHeaderPrefix + token;
                                 interceptor.loginConfirmed();
+                                isAuthenticated = true;
                             } else {
                                 interceptor.loginRequired({
                                     response: data,
                                     status: status,
                                     message: settings.messages.sessionTimedOut
                                 });
+                                isAuthenticated = false;
                             }
                         })
                         .error(function(data, status) {
@@ -34,6 +36,7 @@
                                 status: status,
                                 message: settings.messages.sessionTimedOut
                             });
+                            isAuthenticated = false;
                         });
                 }
             },
@@ -58,12 +61,14 @@
 
                             $http.defaults.headers.common['Authorization'] = settings.token.authHeaderPrefix + token;
                             interceptor.loginConfirmed();
+                            isAuthenticated = true;
                         } else {
                             interceptor.loginRequired({
                                 response: data,
                                 status: status,
                                 message: settings.messages.unknownError + ' ' + status
                             });
+                            isAuthenticated = false;
                         }
                     })
                     .error(function(data, status) {
@@ -73,12 +78,14 @@
                                 status: status,
                                 message: settings.messages.unauthorized
                             });
+                            isAuthenticated = false;
                         } else {
                             interceptor.loginRequired({
                                 response: data,
                                 status: status,
                                 message: settings.messages.unknownError + ' ' + status
                             });
+                            isAuthenticated = false;
                         }
                     });
             },
@@ -87,6 +94,7 @@
                 localStorage.remove(settings.localStorageTokenKey);
                 localStorage.remove(settings.localStorageUserNameKey);
                 interceptor.loginRequired();
+                isAuthenticated = false;
             },
 
             getUsername: function() {
@@ -98,6 +106,7 @@
                 credentials = credentials.replace('Z', 'X');
                 localStorage.remove(settings.localStorageTokenKey);
                 localStorage.add(settings.localStorageTokenKey, credentials);
+                isAuthenticated = false;
             },
             isAuthenticated: function () {
                 return isAuthenticated;
