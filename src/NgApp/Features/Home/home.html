@@ -2,8 +2,22 @@
 
     <h1>{{title}}</h1>
     
-    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
         <span ng-bind-html="alert.message"></span>
     </alert>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">Message Service</div>
+        <div class="panel-body">
+            <button type="button" class="btn btn-success" ng-click="toastSuccess()">Toast Success</button>
+            <button type="button" class="btn btn-danger" ng-click="toastErrorList()">Toast Error List</button>
+            <button type="button" class="btn btn-info" ng-click="toastInfo()">Angular-Toastr Info</button>
+            <button type="button" class="btn btn-primary" ng-click="dialogConfirm()">Dialog Confirm</button>
+            <button type="button" class="btn btn-danger" ng-click="dialogErrorList()">Dialog Error List</button>
+            <button type="button" class="btn btn-info" ng-click="dialogNotify()">Dialogs Service Info</button>
+            <button type="button" class="btn btn-danger" ng-click="logError()">Log Error</button>            
+            <button type="button" class="btn btn-info" ng-click="logInfo()">Log Info</button>
+        </div>
+    </div>
 
 </div>

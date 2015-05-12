@@ -2,6 +2,7 @@
     var app = angular.module('app', [
         'app.authentication',
         'app.navigation',
+        'app.messages',
         'app.demo',
         'app.home',
         'app.about',

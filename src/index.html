@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bower_components/angular-dialog-service/dist/dialogs.min.css" rel="stylesheet">
+    <link href="bower_components/angular-toastr/dist/angular-toastr.min.css" rel="stylesheet">
 
     <link href="NgApp/app.css" rel="stylesheet">
 
@@ -34,6 +36,9 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script> 
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script> 
     <script src="bower_components/angular-base64/angular-base64.min.js"></script> 
+    <script src="bower_components/angular-toastr/dist/angular-toastr.min.js"></script> 
+    <script src="bower_components/angular-dialog-service/dist/dialogs.min.js"></script> 
+    <script src="bower_components/angular-dialog-service/dist/dialogs-default-translations.min.js"></script> 
 
     <!--Infrastructure/Auth-->
     <script src="NgApp/Infrastructure/Authentication/auth-module.js"></script>
@@ -47,6 +52,9 @@
     <!--Infrastructure/Demo-->
     <script src="NgApp/Infrastructure/Demo/demo-module.js"></script>
     <script src="NgApp/Infrastructure/Demo/demo-controller.js"></script>
+    <!--Infrastructure/Messages-->
+    <script src="NgApp/Infrastructure/Messages/messages-module.js"></script>
+    <script src="NgApp/Infrastructure/Messages/messages-service.js"></script>
     <!--Features/Login-->
     <script src="NgApp/Features/Login/login-controller.js"></script>
     <!--Features/Home-->
