@@ -7,16 +7,28 @@
     </alert>
     
     <div class="panel panel-default">
-        <div class="panel-heading">Message Service</div>
+        <div class="panel-heading">Messages Service</div>
         <div class="panel-body">
-            <button type="button" class="btn btn-success" ng-click="toastSuccess()">Toast Success</button>
-            <button type="button" class="btn btn-danger" ng-click="toastErrorList()">Toast Error List</button>
-            <button type="button" class="btn btn-info" ng-click="toastInfo()">Angular-Toastr Info</button>
-            <button type="button" class="btn btn-primary" ng-click="dialogConfirm()">Dialog Confirm</button>
-            <button type="button" class="btn btn-danger" ng-click="dialogErrorList()">Dialog Error List</button>
-            <button type="button" class="btn btn-info" ng-click="dialogNotify()">Dialogs Service Info</button>
-            <button type="button" class="btn btn-danger" ng-click="logError()">Log Error</button>            
-            <button type="button" class="btn btn-info" ng-click="logInfo()">Log Info</button>
+            <p>The Messages Service wraps toastr, dialogs, and $log to provide an easy way to manage user notifications and optional logging.</p>
+            <p>
+                <button type="button" class="btn btn-success" ng-click="success()">Success</button>
+                <button type="button" class="btn btn-warning" ng-click="warn()">Warn</button>
+                <button type="button" class="btn btn-danger" ng-click="error()">Error</button>
+                <button type="button" class="btn btn-info" ng-click="info()">Info</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-primary" ng-click="confirm()">Confirm</button>
+                <button type="button" class="btn btn-primary" ng-click="wait()">Wait</button>
+                <button type="button" class="btn btn-danger" ng-click="errorDialog()">Error Dialog</button>
+                <button type="button" class="btn btn-info" ng-click="notify()">Notify</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-default" ng-click="logLog()">Log</button>            
+                <button type="button" class="btn btn-primary" ng-click="debugLog()">Debug</button>            
+                <button type="button" class="btn btn-warning" ng-click="warnLog()">Warn</button>
+                <button type="button" class="btn btn-danger" ng-click="errorLog()">Error</button>
+                <button type="button" class="btn btn-info" ng-click="infoLog()">Info</button>
+            </p>
         </div>
     </div>
 

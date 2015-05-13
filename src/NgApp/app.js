@@ -19,6 +19,12 @@
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.otherwise({ redirectTo: '/' });
     }]);
+    
+    app.config(function (messagesConfig) {
+        angular.extend(messagesConfig, {
+            logAll: true
+        });
+    });
 
     app.run(['$rootScope', '$route', '$interval', 'authService',
         function ($rootScope, $route, $interval, authService) {
