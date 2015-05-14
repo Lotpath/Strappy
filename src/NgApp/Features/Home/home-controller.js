@@ -16,22 +16,22 @@
         };
 
         $scope.success = function () {
-            messages.success('Yay Strappy!', 'Hello World!');
+            messages.success('Hello World!');
         };
 
         $scope.warn = function () {
-            messages.warn('', 'Betta check yo self');
+            messages.warn('Betta check yo self', 'Warning:');
         };
 
         $scope.error = function() {
-            messages.error('Errors occurred:', ['One', 'Two', 'Three'], {
+            messages.error(['One', 'Two', 'Three'], 'Errors occurred:', {
                 closeButton: true,
                 timeOut: 0
             });
         };
 
         $scope.info = function() {
-            messages.info('For more info...', 'Visit <a href="https://github.com/Foxandxss/angular-toastr" target="_blank">Angular-Toastr on Github</a>', {
+            messages.info('Visit <a href="https://github.com/Foxandxss/angular-toastr" target="_blank">Angular-Toastr on Github</a>', 'For more info...', {
                 allowHtml: true,
                 closeButton: true,
                 timeOut: 0
@@ -40,9 +40,9 @@
 
         $scope.confirm = function() {
             messages.confirm(
-                'Confirm the following:',
                 ['The cat\'s in the cradle', 'The spoon is silver', 'The little boy is blue', 'The man is on the moon'],
-                function(button) {
+                'Please confirm the following:',
+                function (button) {
                     messages.success('', 'You said ' + button);
                 },
                 function(button) {
@@ -54,27 +54,31 @@
         };
 
         $scope.notify = function () {
-            messages.notify('More Info', 'Visit <a href="https://github.com/m-e-conroy/angular-dialog-service" target="_blank">Angular Dialog Service on Github</a>');
+            messages.notify('Visit <a href="https://github.com/m-e-conroy/angular-dialog-service" target="_blank">Angular Dialog Service on Github</a>', undefined,
+                function () { messages.log.info('Notification was closed'); });
         };
 
         $scope.wait = function() {
-            messages.wait.start('Please wait', 'Big file downloading', {backdrop: 'static'});
+            messages.wait.start('Big file downloading...', 'Please wait', { backdrop: 'static' });
             $timeout(function() {
-                messages.wait.progress(25);
+                messages.wait.progress(25, function () { messages.info('25% done...'); });
             }, 1000);
             $timeout(function () {
-                messages.wait.progress(50);
+                messages.wait.progress(50, function () { messages.info('50% done...'); });
             }, 2000);
             $timeout(function () {
-                messages.wait.progress(75);
+                messages.wait.progress(75, function () { messages.info('75% done...'); });
             }, 3000);
             $timeout(function () {
-                messages.wait.progress(100);
+                messages.wait.progress(100, function () { messages.info('100% done...'); });
             }, 4000);
+            $timeout(function () {
+                messages.wait.end(function () { messages.info('Dialog closed'); });
+            }, 4250);
         };
 
         $scope.errorDialog = function() {
-            messages.errorDialog('Errors occurred:', ['Foo', 'Bar', 'Baz']);
+            messages.errorDialog(['Foo', 'Bar', 'Baz']);
         };
 
         $scope.logLog = function () {
