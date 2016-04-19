@@ -1,8 +1,8 @@
 ﻿(function() {
     angular.module('app.authentication')
         .constant('authSettings', {
-            authValidateUrl: '/api/auth/validation',
-            authLoginUrl: '/api/auth/credentials',
+            authValidateUrl: 'api/auth/validation',
+            authLoginUrl: 'api/auth/credentials',
             localStorageTokenKey: 'userToken',
             localStorageUserNameKey: 'userName',
             token: {
